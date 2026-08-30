@@ -1,0 +1,4 @@
+# Quickblog build output and cache
+/public/
+/.work/
+/templates/
