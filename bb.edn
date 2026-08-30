@@ -6,6 +6,7 @@
                    :blog-description ""
                    :blog-root "https://sgopale.github.io/"
                    :assets-dir "posts/images"
-                   :twitter-handle "sgopale"})
+                   :twitter-handle "sgopale"
+                   :default-metadata {:tags []}})
   quickblog {:doc "Start blogging quickly! Run `bb quickblog help` for details."
              :task (cli/dispatch opts)}}}
