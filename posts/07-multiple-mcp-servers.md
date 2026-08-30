@@ -1,6 +1,7 @@
 Title:  Building a Coding Agent : Part 7 - Multiple MCP Servers
 Date: 2025-11-11
 Tags: Clojure, OpenAI, LLM
+Description: Configure the coding agent to connect to multiple MCP servers and combine their tool registries.
 
 In the previous post we looked at connecting to a MCP server - specifically to the Anthropic file system MCP server. Let's extend the functionality of the coding agent to talk to multiple configurable MCP servers.
 # mcp.json configuration

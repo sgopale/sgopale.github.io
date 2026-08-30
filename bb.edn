@@ -3,7 +3,8 @@
  :tasks
  {:requires ([quickblog.cli :as cli])
   :init (def opts {:blog-title "Notes to self"
-                   :blog-description ""
+                   :blog-author "Shyamsunder Gopale"
+                   :blog-description "Notes on learning with Clojure."
                    :blog-root "https://sgopale.github.io/"
                    :assets-dir "posts/images"
                    :twitter-handle "sgopale"

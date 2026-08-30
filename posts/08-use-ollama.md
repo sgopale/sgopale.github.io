@@ -1,6 +1,7 @@
 Title:  Building a Coding Agent : Part 8 - Using Local models
 Date: 2025-11-16
 Tags: Clojure, Ollama, LLM
+Description: Test Llama and Qwen models through Ollama to see which local models can reliably operate a tool-using coding agent.
 
 # Using Ollama models
 Now that we built a decently working coding agent, let us see if we can make it run against a local model. There are a lot of claims on the internet about local models being the future of this space. Let us validate if that claim holds true.

@@ -1,6 +1,8 @@
 Title:  Building a Coding Agent : Part 9 - Adding Command Handling
 Date: 2025-11-19
 Tags: Clojure, OpenAI, LLM
+Description: Refactor the coding agent into a state-driven input loop with commands for clearing history, debugging, and switching models.
+
 If we look at the code for the agent right now, the chat loop is messy. It looks like
 ```
 Get the user input -> Invoke the LLM

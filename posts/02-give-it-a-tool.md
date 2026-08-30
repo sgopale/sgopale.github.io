@@ -1,6 +1,7 @@
 Title: Building a Coding Agent : Part 2 - Adding a tool to the agent
 Date: 2025-10-30
 Tags: Clojure, OpenAI, LLM
+Description: Add an OpenAI function tool to the agent and use it to fetch live weather data.
 
 In the [previous](01-build-the-loop.html) post we looked at a simple LLM loop which the user could chat with. However, the LLM did not have any way to fetch external information. Like when we asked it for the weather in Paris it would give a general sense of the weather based on the date - which it was aware of. However, it could not give any precise information. In this post, let's fix that by providing it with a `get_current_weather` tool.
 

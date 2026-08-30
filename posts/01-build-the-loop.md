@@ -1,6 +1,7 @@
 Title: Building a Coding Agent : Part 1 - A basic LLM chat loop
 Date: 2025-10-29
 Tags: Clojure, OpenAI, LLM
+Description: Build a basic chat loop using the OpenAI API and conversation history.
 
 I am in the process of learning Clojure and wanted a small project to pursue.
 Given the whole AI Agents hype came across a nice post by **Thorsten Ball** on building a code editing agent. He utilizes Go and an Anthropic model endpoint to show how easy it is to build a code editing agent. You can read the whole post at [How to Build an Agent or: The Emperor Has No Clothes](https://ampcode.com/how-to-build-an-agent)

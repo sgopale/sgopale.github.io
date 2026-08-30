@@ -1,6 +1,7 @@
 Title: Building a Coding Agent : Part 6 - Hello MCP
 Date: 2025-11-09
 Tags: Clojure, OpenAI, LLM
+Description: Connect the coding agent to an MCP server using the official Java client SDK.
 
 Anthropic introduced a new protocol which allows standardization of how tools are written for LLMs - the [Model Context Protocol](https://modelcontextprotocol.io/). In this post lets integrate our agent with the MCP client SDK. This will allow us to integrate with publicly available MCP servers and we are freed from writing tools for every service we want to interact with.
 

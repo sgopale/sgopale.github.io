@@ -1,6 +1,7 @@
 Title: Building a Coding Agent : Part 3 - Automatic discovery of tools
 Date: 2025-10-31
 Tags: Clojure, OpenAI, LLM
+Description: Use metadata to discover agent tools and build the tool definitions and invocation registry automatically.
 
 In the [previous](02-give-it-a-tool.html) post, we looked at how to provide a tool to the LLM for getting the weather.
 To simplify the post we had used hard-coding and provided it directly to the LLM. In this post let's look at how we can use the Clojure metadata properties to discover tools.

@@ -1,6 +1,7 @@
 Title: Building a Coding Agent : Part 5 - Add more power to the agent
 Date: 2025-11-02
 Tags: Clojure, OpenAI, LLM
+Description: Give the coding agent shell access so it can create projects, run commands, and work beyond individual files.
 
 Now that we have a working agent - let's give it some more power. In the previous post some things were just not possible without user intervention. For example, we could not generate any Clojure/Clojurescript code as it requires a folder structure for the sources to be recognized correctly. Let's fix that in this post. We could add piecemeal tools like create folder etc. but to give the LLM more agency; we will arm it with a shell execution tool.
 

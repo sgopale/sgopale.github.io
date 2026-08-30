@@ -1,6 +1,7 @@
 Title: Building a Coding Agent : Part 4 - A basic usable coding agent
 Date: 2025-11-01
 Tags: Clojure, OpenAI, LLM
+Description: Turn the chat loop into a basic coding agent with tools for reading, writing, and editing files.
 
 We will utilize this post to get an understanding of how easy it is to build a coding agent.
 You will see that there is not much required to build a coding agent, all the magic is in the LLM.
