@@ -2,3 +2,6 @@
 /public/
 /.work/
 /templates/
+
+# Local convenience junction to the sibling code-editing-agent repo
+/code-editing-agent/
