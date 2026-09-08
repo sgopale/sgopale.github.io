@@ -1,6 +1,7 @@
 # Quickblog build output and cache
 /public/
 /.work/
-/templates/
+/templates/*
+!/templates/style.css
 .lsp/
 .clj-kondo/.cache/

@@ -1,0 +1,377 @@
+@import url("https://fonts.bunny.net/css?family=fira-mono:400,700|fira-sans:400,400i,500,700|fira-sans-condensed:700|pt-serif:400,400i,700,700i");
+
+:root {
+  --background: #ffffff;
+  --text: #374151;
+  --heading: #111827;
+  --muted: #6b7280;
+  --link: #2563eb;
+  --link-hover: #1d4ed8;
+  --border: #e5e7eb;
+  --soft-border: #f1f5f9;
+  --code-background: #f1f5f9;
+  --code-text: #1f2937;
+  --quote-border: #d1d5db;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  margin: 0;
+  padding: 0 0 3rem;
+  background: var(--background);
+  color: var(--text);
+  font-family: "PT Serif", Georgia, serif;
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #c7d2fe;
+  color: var(--heading);
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 46rem;
+  margin: 0 auto;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+body > .wrapper {
+  padding-top: 2.75rem;
+}
+
+.site-header {
+  position: relative;
+  min-height: 5rem;
+  border-bottom: 1px solid var(--border);
+  background: rgb(255 255 255 / 96%);
+  font-family: "Fira Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.site-header .wrapper {
+  max-width: 64rem;
+  padding-top: 1.1rem;
+  padding-bottom: 1.1rem;
+}
+
+.site-title {
+  margin: 0;
+  color: var(--heading);
+  font-family: "Fira Sans Condensed", "Fira Sans", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.site-title a {
+  color: inherit;
+}
+
+.site-header p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.site-nav {
+  float: right;
+  display: flex;
+  gap: 1.3rem;
+  align-items: center;
+  min-height: 2.8rem;
+  margin-left: 2rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.site-nav .page-link:not(:last-child) {
+  margin-right: 0;
+}
+
+.page-link {
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.page-icon {
+  vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading);
+  font-family: "Fira Sans Condensed", "Fira Sans", sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: 2.25rem;
+}
+
+h1:not(:first-child) {
+  margin-top: 2.75rem;
+}
+
+h2 {
+  margin: 2.25rem 0 0.85rem;
+  font-size: 1.65rem;
+}
+
+h3 {
+  margin: 1.9rem 0 0.7rem;
+  font-size: 1.3rem;
+}
+
+h4 {
+  margin: 1.6rem 0 0.6rem;
+  font-size: 1.08rem;
+}
+
+p {
+  margin: 1rem 0;
+}
+
+strong {
+  color: var(--heading);
+  font-weight: 700;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+}
+
+ul,
+ol {
+  margin: 1rem 0 1.5rem;
+  padding-left: 1.6rem;
+}
+
+li {
+  margin: 0.35rem 0;
+  padding-left: 0.2rem;
+}
+
+blockquote {
+  margin: 1.5rem 0;
+  border-left: 4px solid var(--quote-border);
+  padding: 0.1rem 0 0.1rem 1rem;
+  color: var(--heading);
+  font-style: italic;
+}
+
+blockquote > :first-child {
+  margin-top: 0;
+}
+
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+code,
+pre {
+  font-family: "Fira Mono", Consolas, monospace;
+}
+
+:not(pre) > code {
+  border-radius: 0.2rem;
+  background: var(--code-background);
+  padding: 0.1rem 0.28rem;
+  color: var(--code-text);
+  font-size: 0.84em;
+  font-weight: 500;
+  white-space: normal;
+}
+
+body pre,
+body pre[class*="language-"] {
+  width: calc(100% + 4rem);
+  margin: 1.6rem -2rem;
+  overflow-x: auto;
+  border: 0;
+  border-radius: 0.25rem;
+  background: var(--code-background);
+  padding: 1.15rem 2rem;
+  color: var(--code-text);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  text-shadow: none;
+  white-space: pre;
+}
+
+body pre code,
+body code[class*="language-"] {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font-family: "Fira Mono", Consolas, monospace;
+  font-size: inherit;
+  line-height: inherit;
+  text-shadow: none;
+  white-space: inherit;
+}
+
+hr {
+  margin: 2.5rem 0;
+  border: 0;
+  border-top: 2px solid var(--soft-border);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+}
+
+table {
+  width: 100%;
+  margin: 1.5rem 0 2rem;
+  border-collapse: collapse;
+  font-family: "Fira Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.65rem 0.55rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: var(--heading);
+  font-weight: 700;
+}
+
+body > .wrapper > div:has(> h1) {
+  margin-bottom: 4rem;
+}
+
+body > .wrapper > div:has(> h1) + div:has(> h1) {
+  border-top: 1px solid var(--border);
+  padding-top: 3rem;
+}
+
+body > .wrapper > div:has(> h1) > h1 a {
+  color: var(--heading);
+}
+
+body > .wrapper > div:has(> h1) > h1 a:hover {
+  color: var(--link);
+}
+
+.tag {
+  display: inline-block;
+  margin: 0.15rem 0.25rem 0.15rem 0;
+  border-radius: 999px;
+  background: var(--code-background);
+  padding: 0.12rem 0.55rem;
+  font-family: "Fira Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.72rem;
+  font-style: normal;
+}
+
+.tag a {
+  color: #475569;
+}
+
+ul.index {
+  list-style: none;
+  padding-left: 0;
+}
+
+.index li {
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--soft-border);
+}
+
+body > .wrapper > div[style*="width: 600px"] {
+  width: 100% !important;
+}
+
+.index li span {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.index li a {
+  min-width: 0;
+}
+
+@media (max-width: 700px) {
+  html {
+    font-size: 16px;
+  }
+
+  body > .wrapper {
+    padding-top: 2rem;
+  }
+
+  .site-header {
+    min-height: 0;
+  }
+
+  .site-header .wrapper {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .site-nav {
+    float: none;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    min-height: 0;
+    margin: 0 0 0.9rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  body pre,
+  body pre[class*="language-"] {
+    width: calc(100% + 2rem);
+    margin-right: -1rem;
+    margin-left: -1rem;
+    padding: 1rem;
+    border-radius: 0;
+    font-size: 0.75rem;
+  }
+
+  .index li span {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}
