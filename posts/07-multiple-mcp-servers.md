@@ -4,7 +4,7 @@ Tags: Clojure, OpenAI, LLM
 Description: Configure the coding agent to connect to multiple MCP servers and combine their tool registries.
 
 In the previous post we looked at connecting to a MCP server - specifically to the Anthropic file system MCP server. Let's extend the functionality of the coding agent to talk to multiple configurable MCP servers.
-# mcp.json configuration
+## mcp.json configuration
 We will reuse the same format that Claude Code uses for configuring MCP servers. The file is of the format
 ```json
 {
@@ -30,7 +30,7 @@ We will reuse the same format that Claude Code uses for configuring MCP servers.
 ```
 Each MCP server is specified with a path to an executable. We will only deal with local MCP servers, leaving remote MCP servers for another post.
 
-# Dealing with multiple MCP servers
+## Dealing with multiple MCP servers
 We had directly invoked the tool call on the MCP client connection as we had a single MCP server and did not need to disambiguate between calls. While supporting multiple MCP servers we need to route the tool call to the correct MCP server. For doing this lets remove the direct MCP tool call and utilize the tool registry to direct the calls. Recall that we had built a tool registry to register function based tool calls. The registry was a map of the form `name -> function`. Let us keep the same structure, except we will bind the function to a dynamic function which calls the MCP tool as appropriate.
 
 We will bind each MCP tool to a function of the form. The server and name are already available when creating the binding. The args are passed in by the `invoke-tool` call.
@@ -60,7 +60,7 @@ Since, our regular tool requires parsed json arguments - we will change that fun
                    (assoc acc name (fn [args] (f (parse-json-arguments args))))))
                {})))
 ```
-# Demo
+## Demo
 We will force the LLM to use the thinking tools with the following prompt - "Help me write a factorial function in CLJS. Please think a bit before writing the code. Please use the tools available to you."
 With this prompt the LLM uses both the MCP servers available to it.
 ```txt

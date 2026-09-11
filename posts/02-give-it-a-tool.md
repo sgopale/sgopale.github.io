@@ -5,7 +5,7 @@ Description: Add an OpenAI function tool to the agent and use it to fetch live w
 
 In the [previous](01-build-the-loop.html) post we looked at a simple LLM loop which the user could chat with. However, the LLM did not have any way to fetch external information. Like when we asked it for the weather in Paris it would give a general sense of the weather based on the date - which it was aware of. However, it could not give any precise information. In this post, let's fix that by providing it with a `get_current_weather` tool.
 
-# OpenAI tool documentation
+## OpenAI tool documentation
 In the previous post we have already seen how the LLM responds and how the user messages are tagged in the history.
 For an LLM to be aware of tools those need to be passed into the completions API along with some metadata describing their use.
 
@@ -36,7 +36,7 @@ For the get_current_weather tool, this is the metadata format prescribed by Open
 ```
 We need to give it a `description`, a `name`, and the parameters it expects in the form of a JSON object.
 
-# How tools operate?
+## How tools operate?
 Now that the LLM has a tool to get the weather available, let's look at how it is invoked.
 Whenever the LLM needs the tool to be executed, it generates a special message of the form
 ```json
@@ -60,7 +60,7 @@ The call_id is to match outputs of the tool calls to the appropriate LLM tool ca
 ```
 Note the `tool` role instead of the `user` or `assistant` role.
 
-# Handle the weather query
+## Handle the weather query
 Now armed with the above information, we can change our LLM call to the following.
 ```clojure
 (openai/create-chat-completion {:model (:model config)
@@ -204,7 +204,7 @@ The final code looks like:
           (recur (read-user-input!) messages-including-response))))))
 ```
 
-# Demo
+## Demo
 > **You**: Howdy, can you tell how the weather in Paris is like?
 >
 > **LLM**: Howdy — right now it's showing -26 °C in Paris (France), which is about -14.8 °F. That’s extremely cold and unusual for Paris — would you like me to:

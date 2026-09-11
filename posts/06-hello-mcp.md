@@ -5,7 +5,7 @@ Description: Connect the coding agent to an MCP server using the official Java c
 
 Anthropic introduced a new protocol which allows standardization of how tools are written for LLMs - the [Model Context Protocol](https://modelcontextprotocol.io/). In this post lets integrate our agent with the MCP client SDK. This will allow us to integrate with publicly available MCP servers and we are freed from writing tools for every service we want to interact with.
 
-# MCP Protocol Library
+## MCP Protocol Library
 Let's integrate the official Java MCP Client library as there is no library which allows us to consume MCP servers in Clojure. The documentation for the library is at [MCP Java SDK](https://modelcontextprotocol.io/sdk/java/mcp-overview).
 
 I have never done Java interop in Clojure before. So, this was a nice learning experience. The sequence of steps for using a MCP server is as follows:
@@ -93,7 +93,7 @@ The parsing of the tool result is done as below:
   (let [json (tool-result->json tool-result)]
     (cheshire/parse-string json true)))
 ```
-# Demo
+## Demo
 Now let us look at a demo run using MCP tools for the filesystem.
 ```txt
 Debug : Registering tool run_shell_command

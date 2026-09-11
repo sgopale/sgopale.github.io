@@ -7,9 +7,9 @@ We will utilize this post to get an understanding of how easy it is to build a c
 You will see that there is not much required to build a coding agent, all the magic is in the LLM.
 It will make you question why all these coding agent startups have such a big valuation when it is so easy for a single developer to build one.
 
-# Write the file editing tools
+## Write the file editing tools
 We will build a few file editing tools which allow the LLM to manipulate files. This will unlock the behaviour of the coding agent.
-## Read file
+### Read file
 The first tool we will provide the LLM is a file reading tool. It can be coded and annotated for the LLM to discover as below:
 ```clojure
 (defn
@@ -38,7 +38,7 @@ We can immediately see the utility of this tool by asking the LLM to summarize f
 
 The LLM can now read file contents and reason over the contents. Like solving the puzzle in the file `secret-file.txt`
 
-## List directory
+### List directory
 Next, let us give it a tool to list the files in a folder. That will free us from giving it precise file names for reasoning over.
 ```clojure
 (defn
@@ -112,7 +112,7 @@ In short: this project implements a chat loop with an LLM that can request and r
 
 ```
 
-## Search and Replace text
+### Search and Replace text
 Finally to allow the LLM to modify text, lets implement a search and replace tool. This tool is very primitive - only does a simple search and replace; but even with this tool the LLM can suddenly start writing code which can solve coding problems.
 ```clojure
 (defn

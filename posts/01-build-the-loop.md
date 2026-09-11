@@ -8,14 +8,14 @@ Given the whole AI Agents hype came across a nice post by **Thorsten Ball** on b
 
 I thought I would try and replicate the same process using Clojure and an OpenAI model (gpt-5-mini).
 
-# How chat completions work?
+## How chat completions work?
 Before we get to implementing a code-editing agent, let's spend some time understanding how an LLM based chat workflow works. An LLM is a next word (token) prediction engine and it relies on the previous tokens to predict the next word. So, for a chat based experience to work it effectively needs the entire conversation history to generate the next response. This is due to the fact that it is stateless and all the state of the conversation is in the history. It is the client which talks to the LLM which maintains the history of the conversation.
 
 ![LLM Completion](assets/llm-loop.png)
 
 Each message in the conversation history is tagged with a role attribute - **user** or **assistant**
 
-# OpenAI API Client
+## OpenAI API Client
 
 For talking to the OpenAI model we will use the [openai-clojure](https://github.com/wkok/openai-clojure) library. Add it to your `deps.edn` file as
 ```clojure
@@ -37,7 +37,7 @@ The chat-completion API takes a model parameter which can be passed in.
 The `api-keys` and `api-endpoint` parameters need to be pointed to your instance of the model. The `:model` parameter is the model we are using. In my case it is the `gpt-5-mini` model.
 The `:messages` parameter contains the conversation history. The last message in the history is typically a **user** message.
 
-# Code for the loop
+## Code for the loop
 
 Now that we know how to call the API. Let's look at the main loop of the agent. Right now it can only respond via text and does not do much but can still be used to ask questions like with any LLM Chat interface.
 
@@ -125,7 +125,7 @@ The `llm.edn` config file is of the format:
  :model "gpt-5-mini"}
 ```
 You can also export the API key as an environment variable to be picked from. Have a look at the [openai-clojure](https://github.com/wkok/openai-clojure) docs for more details.
-# Demo of the loop
+## Demo of the loop
 Here is a sample run, asking for the weather in Paris. As you can see the LLM complains of having no access to live data for the weather however the model has been provided information about the current date already by whatever **system** prompt that has been initialized by the model provider. So, it can predict how the weather will be in October. In the next post we will look at adding a weather tool which the model can call to get the weather in a particular location.
 
 >
@@ -142,4 +142,3 @@ Here is a sample run, asking for the weather in Paris. As you can see the LLM co
 > Which would you like? (Also: Celsius or Fahrenheit?)
 >
 > **User** => quit
-```

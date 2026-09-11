@@ -4,7 +4,7 @@ Preview: true
 
 [Back to the main post](11-evals-basic-setup.html).
 
-# Eval dataset
+## Eval dataset
 
 | Question | Answers |
 |---|---|
@@ -39,7 +39,7 @@ Preview: true
 | Who demonstrated how to create a perfect number from a Mersenne prime? | Euclid |
 | What is the Chinese name for the Yuan dynasty? | Yuán Cháo; 元朝 |
 
-# Qwen substring results
+## Qwen substring results
 
 | Question | Answer | Expected | Score |
 |---|---|---|---:|
@@ -74,7 +74,7 @@ Preview: true
 | Who demonstrated how to create a perfect number from a Mersenne prime? | Not Known. | Euclid | 0 |
 | What is the Chinese name for the Yuan dynasty? | Yuan dynasty. | Yuán Cháo; 元朝 | 0 |
 
-# Gemma substring results
+## Gemma substring results
 
 | Question | Answer | Expected | Score |
 | --- | --- | --- | --- |
@@ -109,7 +109,7 @@ Preview: true
 | Who demonstrated how to create a perfect number from a Mersenne prime? | Euclid | [Euclid] | 1 |
 | What is the Chinese name for the Yuan dynasty? | 元朝 (Yuán Cháo) | [Yuán Cháo 元朝] | 1 |
 
-# Gemma F1 results
+## Gemma F1 results
 
 | Question | Answer | Expected | Score |
 | --- | --- | --- | --- |

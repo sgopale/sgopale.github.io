@@ -3,14 +3,14 @@ Date: 2025-11-16
 Tags: Clojure, Ollama, LLM
 Description: Test Llama and Qwen models through Ollama to see which local models can reliably operate a tool-using coding agent.
 
-# Using Ollama models
+## Using Ollama models
 Now that we built a decently working coding agent, let us see if we can make it run against a local model. There are a lot of claims on the internet about local models being the future of this space. Let us validate if that claim holds true.
 
 We will use [Ollama](https://ollama.ai) to run a local model. Luckily for us it supports the OpenAI API out of the box. So, if you connect to http://localhost:11434/v1, you can reuse the agent that we already wrote to try out the different models.
 
 My setup is a AMD Ryzen 1600 desktop with 32GB RAM and a RTX 3060 12 GB. So, I am both CPU and GPU poor :D.
 
-# Llama 3.2 (3B)
+## Llama 3.2 (3B)
 
 The first one I tried is Llama 3.2 (3b). We have to look for models which support tool calling for the agent to work. For example, the Gemma models from Google do not support tool calling and so cannot be used with our agent. The model download was relatively small for Llama 3.2 - around 2 GB. It was decently fast also due to it fitting in the VRAM of my device completely. I could get responses within 2 seconds. However, that was where the positives ended. The model hallucinates tool calls and calls them incorrectly - mostly it is unable to generate the correct tool call format. I gave it a task of writing a Javascript FizzBuzz program and this is what I got.
 ```text
@@ -67,7 +67,7 @@ You : quit
 ```
 So, this model is not performing well. It could not even call the tool to read/write files correctly.
 
-# Qwen 2.5 coder (1.5B)
+## Qwen 2.5 coder (1.5B)
 I had heard a lot of great things about the Qwen coding models. So, I tried the smallest of those next - the one with 1.5B parameters. Ollama downloads around 1GB of model data for this to run. I asked it what the program in the current folder does?
 ```text
 You : What does the program in the current folder do?
@@ -85,7 +85,7 @@ You : quit
 ```
 No dice. It is also not able to run any tools. Maybe I should try with a larger model.
 
-# Qwen 3 VL (8b)
+## Qwen 3 VL (8b)
 Maybe the size of the model is an issue. Let us try with a larger model. The latest Qwen 3 VL (8b) parameters.
 This one manages tool calls perfectly and is able to answer what the code in the current project does.
 ```text

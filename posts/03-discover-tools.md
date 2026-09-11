@@ -6,7 +6,7 @@ Description: Use metadata to discover agent tools and build the tool definitions
 In the [previous](02-give-it-a-tool.html) post, we looked at how to provide a tool to the LLM for getting the weather.
 To simplify the post we had used hard-coding and provided it directly to the LLM. In this post let's look at how we can use the Clojure metadata properties to discover tools.
 
-# How to use Clojure metadata to discover a tool
+## How to use Clojure metadata to discover a tool
 Clojure allows tagging of all symbols with a metadata map. This allows arbitrary annotation of the code and data.
 We can query the metadata attached to any symbol by:
 ```clojure
@@ -67,7 +67,7 @@ We also need a registry to invoke the tool when we find a matching tool call fro
                  (assoc acc (get-in (meta f) [:tool :name]) f))
                {})))
 ```
-# Wiring up the tool execution
+## Wiring up the tool execution
 Now, that we have both of these we can change the `handle-tool-call` to utilize both of these.
 ```clojure
 (defn handle-tool-call
@@ -210,7 +210,7 @@ The complete code looks like:
           (recur (read-user-input!) messages-including-response))))))
 ```
 We have moved the tools to a separate namespace `agent.tools` to manage the code better.
-# Demo
+## Demo
 
 > **You:** How is the weather in San Jose?
 >

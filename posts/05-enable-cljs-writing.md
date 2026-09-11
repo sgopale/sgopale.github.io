@@ -5,7 +5,7 @@ Description: Give the coding agent shell access so it can create projects, run c
 
 Now that we have a working agent - let's give it some more power. In the previous post some things were just not possible without user intervention. For example, we could not generate any Clojure/Clojurescript code as it requires a folder structure for the sources to be recognized correctly. Let's fix that in this post. We could add piecemeal tools like create folder etc. but to give the LLM more agency; we will arm it with a shell execution tool.
 
-# Run shell command
+## Run shell command
 A simple `run_shell_command` tool can be implemented as below:
 ```clojure
 (defn
@@ -28,7 +28,7 @@ A simple `run_shell_command` tool can be implemented as below:
 
 With this one single tool our coding agent is more agentic :D. Let us see a sample run with it.
 
-# Demo
+## Demo
 **You**: Can you write a shadow-cljs based fizzbuzz script?
 ```text
 tool: edit_file {:path package.json, :old_str , :new_str {

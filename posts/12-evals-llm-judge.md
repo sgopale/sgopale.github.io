@@ -3,7 +3,7 @@ Date: 2026-09-11
 Tags: LLM, Evals
 Description: Modifying our evals setup to include a LLM-as-a-judge eval
 
-# Protocol for a scorer
+## Protocol for a scorer
 Earlier, we built an exact match scorer and an F1 scorer. These needed multiple functions
 - a scoring function
 - a result accumulation function
@@ -59,7 +59,7 @@ Now let's rewrite our two scorers using the protocol that we defined:
         (= 0 score) (assoc accumulated-result :failed (inc (:failed accumulated-result)))
         :else (assoc accumulated-result :partial (inc (:partial accumulated-result)))))))
 ```
-# LLM as a judge
+## LLM as a judge
 
 In the previous post, we found that the code-only scorers had several issues where the matching logic became more convoluted to get a correct result.
 The solution in the evals world is to use another LLM to test the result. This sounds weird - using an LLM to check another LLM's output. Turtles all the way down.
