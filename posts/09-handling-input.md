@@ -4,7 +4,7 @@ Tags: Clojure, OpenAI, LLM
 Description: Refactor the coding agent into a state-driven input loop with commands for clearing history, debugging, and switching models.
 
 If we look at the code for the agent right now, the chat loop is messy. It looks like
-```
+```text
 Get the user input -> Invoke the LLM
 ```
 The code for the main loop looks like right now.
@@ -44,21 +44,21 @@ With these three states available our chat loop becomes simpler. The `handle-use
 After the implementation of our `handle-user-input!` function the main loop looks like:
 ```clojure
 (loop [{:keys [next-state] :as current-state} (state/handle-user-input! initial-state (read-user-input!))]
-      (cond
-        (= next-state :quit)
-        (do
-          (println "Exiting")
-          (doseq [server servers]
-            (println "Closing " (:name server))
-            (mcpclient/close-client (:client server))))
+  (cond
+    (= next-state :quit)
+    (do
+      (println "Exiting")
+      (doseq [server servers]
+        (println "Closing " (:name server))
+        (mcpclient/close-client (:client server))))
 
-        (= next-state :llm)
-        (let [{:keys [history] :as response} (get-assistant-response current-state)]
-          (display-assistant-response! response)
-          (recur (state/handle-user-input! (assoc current-state :history history) (read-user-input!))))
+    (= next-state :llm)
+    (let [{:keys [history] :as response} (get-assistant-response current-state)]
+      (display-assistant-response! response)
+      (recur (state/handle-user-input! (assoc current-state :history history) (read-user-input!))))
 
-        (= next-state :user)
-        (recur (state/handle-user-input! current-state (read-user-input!))))
+    (= next-state :user)
+    (recur (state/handle-user-input! current-state (read-user-input!)))))
 ```
 Our `handle-user-input!` function can be written as:
 ```clojure

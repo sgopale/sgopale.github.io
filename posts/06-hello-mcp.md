@@ -10,7 +10,7 @@ Let's integrate the official Java MCP Client library as there is no library whic
 
 I have never done Java interop in Clojure before. So, this was a nice learning experience. The sequence of steps for using a MCP server is as follows:
 
-```
+```text
 Create MCP Client ->
   Initialize the Server ->
     List Tools and hand them to the LLM ->
@@ -21,7 +21,7 @@ Create MCP Client ->
 For getting the MCP server connection we need to create a client first. The library  supports two types of clients **Sync** and **Async**. To keep things simple let's use a sync client.
 
 To create a sync client first we need a transport for the server. Multiple types of transports are possible but for a local server **Stdio** works fine. Let's create the transport first
-```Clojure
+```clojure
 (defn- make-transport
   [program args]
   (-> (ServerParameters/builder program)
@@ -31,12 +31,12 @@ To create a sync client first we need a transport for the server. Multiple types
 ```
 We pass in a program and its arguments for the transport to be created. In our case we will use the default filesystem server provided by Anthropic. So, the call will be:
 
-```Clojure
+```clojure
 (make-transport "npx" ["-y" "@modelcontextprotocol/server-filesystem" "."])
 ```
 
 Once we have a transport available, we will use it to create a sync MCP client.
-```Clojure
+```clojure
 (defn make-client
   "Create a client to the MCP server specified"
   [program args]
@@ -46,7 +46,7 @@ Once we have a transport available, we will use it to create a sync MCP client.
 ```
 
 Now we can query this server for a list of tools using:
-```Clojure
+```clojure
 (defn get-tools
   "Get the list of tools exposed by the MCP server in a format which is compatible to the OpenAI endpoint"
   [server]
@@ -56,7 +56,7 @@ Now we can query this server for a list of tools using:
 ```
 This list of tools we pass in addition to our other tools. Since, we are using the Anthropic filesystem MCP server we will unregister our tools. We will only keep the shell execution tool. We now just need to change the `invoke-tool` function to call the MCP tool if there is no coded tool available. The changed code looks like below:
 
-```Clojure
+```clojure
 (defn- invoke-tool [tools tc client]
   (let [name (get-in tc [:function :name])
         tool-fn (get tools name)
@@ -71,7 +71,7 @@ This list of tools we pass in addition to our other tools. Since, we are using t
 ```
 Our coded function expect Clojure maps but the MCP tools require JSON strings. To avoid round-tripping from JSON to Clojure and back we pass in the JSON string as is to the MCP tool call. The MCP tool function is written as:
 
-```Clojure
+```clojure
 (defn call-tool
   "Invoke an MCP tool with the given params"
   [client tool params]
@@ -79,7 +79,7 @@ Our coded function expect Clojure maps but the MCP tools require JSON strings. T
     (tool-result->clj (.callTool client request))))
 ```
 The parsing of the tool result is done as below:
-```Clojure
+```clojure
 (defn- tool-result->json
   [tool-result]
   (let [mapper (McpJsonMapper/getDefault)]

@@ -319,7 +319,7 @@ Would you like me to make any git changes (commit, create a branch, or revert so
 
 And that is it. Anything you can do with a coding agent is possible with this code. Let's ask the LLM how large it is?
 Skipping the whole output. This what the LLM reported
-```
+```text
 LLM: Summary of the Clojure/CLJS sources in this repo (analysis run on src/):
 
 - Total Clojure source files found: 2

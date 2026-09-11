@@ -47,6 +47,93 @@
                            (str/join ", " (sort %)))))]
     (concat field-issues tag-issues)))
 
+(defn- level-1-heading-lines
+  "Line numbers of level-1 Markdown headings that sit outside fenced code blocks."
+  [content]
+  (->> (str/split-lines content)
+       (map-indexed (fn [idx line] [(inc idx) line]))
+       (reduce (fn [{:keys [fence?] :as acc} [line-number line]]
+                 (cond
+                   (re-find #"^ {0,3}(?:```|~~~)" line) (update acc :fence? not)
+                   (and (not fence?) (re-find #"^#(?:[ \t]|$)" line)) (update acc :hits conj line-number)
+                   :else acc))
+               {:fence? false :hits []})
+       :hits))
+
+(defn- heading-issues [posts-dir]
+  (for [source (sort (fs/glob posts-dir "*.md"))
+        line-number (level-1-heading-lines (slurp (str source)))]
+    (format "%s:%d: body uses a level-1 heading; the Title metadata already renders as <h1>, so start body headings at ##"
+            (fs/file-name source)
+            line-number)))
+
+(def ^:private clojure-fence-languages #{"clojure" "clj" "cljc" "cljs" "edn"})
+
+(def ^:private code-listing-attribute ":nextjournal.clerk/code-listing true")
+
+(defn- fence-blocks
+  "Parse fenced code blocks. Returns the closed blocks and the line of an unclosed fence."
+  [content]
+  (loop [pairs (map-indexed (fn [idx line] [(inc idx) line]) (str/split-lines content))
+         open nil
+         body []
+         blocks []]
+    (if-let [[line-number line] (first pairs)]
+      (let [[_ info] (re-find #"^ {0,3}(?:```|~~~)(.*)$" line)]
+        (cond
+          (and info (nil? open))
+          (let [[lang attrs] (str/split (str/trim info) #"\s+" 2)]
+            (recur (rest pairs)
+                   {:line line-number :lang (or lang "") :attrs (or attrs "")}
+                   []
+                   blocks))
+
+          info
+          (recur (rest pairs) nil [] (conj blocks (assoc open :body (str/join "\n" body))))
+
+          open
+          (recur (rest pairs) open (conj body line) blocks)
+
+          :else
+          (recur (rest pairs) open body blocks)))
+      {:blocks blocks :unclosed (:line open)})))
+
+(defn- readable-clojure?
+  "True when every form in the block reads without a reader error."
+  [body]
+  (try
+    (some? (read-string {:read-cond :allow} (str "[" body "\n]")))
+    (catch Exception _
+      false)))
+
+(defn- block-issues [file {:keys [line lang attrs body]}]
+  (let [language (str/lower-case lang)
+        say #(format "%s:%d: %s" file line %)]
+    (cond-> []
+      (str/blank? lang)
+      (conj (say "code fence has no language tag; use ```text for prose or transcripts"))
+
+      (and (seq lang) (not= lang language))
+      (conj (say (format "code fence language must be lowercase: use %s instead of %s" language lang)))
+
+      (and (contains? clojure-fence-languages language)
+           (not (str/includes? attrs code-listing-attribute))
+           (not (readable-clojure? body)))
+      (conj (say (format "clojure block does not read; fix the form or mark the fence ```%s {%s}"
+                         language
+                         code-listing-attribute))))))
+
+(defn- fence-issues [posts-dir]
+  (mapcat
+   (fn [source]
+     (let [file (str (fs/file-name source))
+           {:keys [blocks unclosed]} (fence-blocks (slurp (str source)))]
+       (concat
+        (when unclosed
+          [(format "%s:%d: code fence opened here is never closed" file unclosed)])
+        (mapcat #(block-issues file %) blocks))))
+   (sort (fs/glob posts-dir "*.md"))))
+
 (defn- external-link? [link]
   (or (str/starts-with? link "#")
       (str/starts-with? link "//")
@@ -110,6 +197,8 @@
                         (str "Missing rendered output: public/" path))
         issues (vec (concat skipped-issues
                             (metadata-issues posts)
+                            (heading-issues posts-dir)
+                            (fence-issues posts-dir)
                             output-issues
                             (rendered-post-issues output-dir posts)
                             (link-issues output-dir)))]

@@ -101,7 +101,7 @@ And we change the main loop to handle the tool calls also.
     (if (seq tool-messages)
       (let [tool-message-history (reduce add-message-to-history new-messages tool-messages)]
         (recur tool-message-history config tools))
-      new-messages)))
+      new-messages))
 ```
 
 The final code looks like:

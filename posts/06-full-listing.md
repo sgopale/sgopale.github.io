@@ -3,7 +3,7 @@ Date: 2025-11-09
 Preview: true
 
 **mcpclient.clj**
-```Clojure
+```clojure
 (ns agent.mcpclient
   (:require [cheshire.core :as cheshire])
   (:import (io.modelcontextprotocol.client.transport ServerParameters StdioClientTransport)

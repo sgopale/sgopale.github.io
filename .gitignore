@@ -4,4 +4,4 @@
 /templates/*
 !/templates/style.css
 .lsp/
-.clj-kondo/.cache/
+.clj-kondo/
